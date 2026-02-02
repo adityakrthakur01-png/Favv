@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Ankita 💖</title>
+
+
+<style>
+body {
+    margin: 0;
+    padding: 40px;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffe6f0, #ffffff);
+    overflow-x: hidden;
+}
+
+
+h1 { color: #ff3366; }
+h2 { color: #444; }
+
+
+button {
+    padding: 15px 35px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+#yesBtn {
+    background: #28a745;
+    color: white;
+}
+
+
+#noBtn {
+    background: #dc3545;
+    color: white;
+    margin-left: 15px;
+}
+
+
+#msgBox {
+    margin-top: 25px;
+    font-size: 22px;
+    color: #ff0066;
+    min-height: 60px;
+}
+
+
+#sticker {
+    font-size: 50px;
+    margin-top: 10px;
+    animation: pop 0.4s ease;
+}
+
+
+@keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+
+/* floating hearts */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 22px;
+    animation: floatUp 4s linear forwards;
+}
+
+
+@keyframes floatUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-110vh); opacity: 0; }
+}
+</style>
+</head>
+
+
+<body>
+
+
+<!-- AUDIO -->
+<audio id="song" preload="auto">
+  <source src="arijit.mp3" type="audio/mpeg">
+</audio>
+
+
+<div id="content">
+
+
+<h1>
+February aa gaya hai…<br>
+jisme kuch aaltu-faltu din aate hai…<br>
+chalo saath me uss din ko thoda accha banaye ❤️
+</h1>
+
+
+<h2>
+So dear mahila mitra,<br>
+kya aap meri <b>pasandita aurat</b> banegi? 🥹💖
+</h2>
+
+
+<button id="yesBtn" onclick="yesClicked()">YES 😍</button>
+<button id="noBtn" onclick="noClicked()">NO 🙄</button>
+
+
+<div id="msgBox"></div>
+<div id="sticker"></div>
+
+
+</div>
+
+
+<script>
+let noCount = 0;
+
+
+const messages = [
+  "Itna jaldi kaise soch liya?",
+  "Phir se soch lo na",
+  "Nahi pls aisa mat karo",
+  "Dil toot jayega",
+  "Maan bhi jao ab"
+];
+
+
+const stickers = ["🥺", "😢", "😭", "💔", "👉👈"];
+
+
+function noClicked() {
+    const yes = document.getElementById("yesBtn");
+    const msgBox = document.getElementById("msgBox");
+    const sticker = document.getElementById("sticker");
+
+
+    const index = Math.min(noCount, messages.length - 1);
+
+
+    msgBox.innerHTML = messages[index];
+    sticker.innerHTML = stickers[index];
+
+
+    // grow YES button
+    let size = parseFloat(getComputedStyle(yes).fontSize);
+    yes.style.fontSize = (size + 6) + "px";
+    yes.style.padding = "22px 48px";
+
+
+    noCount++;
+}
+
+
+function yesClicked() {
+    const song = document.getElementById("song");
+    song.currentTime = 0;
+    song.play();
+
+
+    document.getElementById("content").innerHTML = `
+        <h1>Good choice 😌💖</h1>
+
+
+        <h2>
+        Ankita…<br><br>
+        Tujh ko jo paaya 🥹❤️<br>
+        toh jeena aaya 😍✨<br><br>
+        Ab ye lamha ⏳ theher jaaye 🫶<br>
+        tham jaaye 💫<br>
+        hum dono ke darmiyaan 💞
+        </h2>
+
+
+        <h2>
+        Itni khushi mujhe aaj tak nahi hui 🥹💃🕺✨
+        </h2>
+
+
+        <h3>— Cheesecake 😌🍰</h3>
+    `;
+
+
+    startHearts();
+}
+
+
+function startHearts() {
+    for (let i = 0; i < 40; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }
+}
+</script>
+
+
+</body>
+</html>
